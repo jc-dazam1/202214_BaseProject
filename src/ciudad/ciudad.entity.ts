@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { SupermercadoEntity } from '../supermercado/supermercado.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 

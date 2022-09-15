@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { CiudadEntity } from '../ciudad/ciudad.entity';
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 
