@@ -24,14 +24,20 @@ export class SupermercadoService {
         return supermercado;
     }
     async create(supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
+        if(supermercado.nombre.length<10)
+            throw new BusinessLogicException("El nombre del supermercado es muy corto.", BusinessError.NOT_FOUND);
+
         return this.supermercadoRepository.save(supermercado);
     }
 
     async update(id: string, supermercado: SupermercadoEntity): Promise<SupermercadoEntity> {
         const persistedSupermercado: SupermercadoEntity = await this.supermercadoRepository.findOne({where:{id}});
         if (!persistedSupermercado)
-          throw new BusinessLogicException("El supermercado con el id proporcionado no ha sido encontrado.", BusinessError.NOT_FOUND);
+            throw new BusinessLogicException("El supermercado con el id proporcionado no ha sido encontrado.", BusinessError.NOT_FOUND);
         
+        if(supermercado.nombre.length<10)
+            throw new BusinessLogicException("El nombre del supermercado es muy corto.", BusinessError.PRECONDITION_FAILED);
+
         supermercado.id =id;  
 
         return this.supermercadoRepository.save(supermercado);

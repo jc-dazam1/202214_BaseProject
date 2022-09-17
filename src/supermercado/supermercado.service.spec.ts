@@ -58,7 +58,7 @@ describe('SupermercadoService', () => {
 
       const supermercado: SupermercadoEntity = {
         id: "",
-        nombre: faker.address.cityName(),
+        nombre: "Nombre Restaurante Nuevo",
         longitud: faker.address.longitude(),
         latitud: faker.address.latitude(),
         pagWeb: faker.internet.url(),
@@ -76,10 +76,10 @@ describe('SupermercadoService', () => {
 
     it('update debe modificar un supermercado', async () => {
       const supermercado: SupermercadoEntity = supermercadosList[0];
-      supermercado.nombre = "New name";
-      supermercado.longitud = faker.address.longitude(),
-      supermercado.latitud = faker.address.latitude(),
-      supermercado.pagWeb= faker.internet.url()
+      supermercado.nombre = "Nuevo nombre para supermercado";
+      supermercado.longitud = faker.address.longitude();
+      supermercado.latitud = faker.address.latitude();
+      supermercado.pagWeb= faker.internet.url();
     
       const updatedSupermercado: SupermercadoEntity = await service.update(supermercado.id, supermercado);
       expect(updatedSupermercado).not.toBeNull();
@@ -92,10 +92,10 @@ describe('SupermercadoService', () => {
       expect(storedSupermercado.pagWeb).toEqual(updatedSupermercado.pagWeb)
     });
 
-    it('update deberia mostrar excepcion para una ciudad no valida', async () => {
+    it('update deberia mostrar excepcion para una supermercado no valida', async () => {
       let supermercado: SupermercadoEntity = supermercadosList[0];
       supermercado = {
-        ...supermercado, nombre: "New name", longitud: faker.address.longitude(), latitud: "0"
+        ...supermercado, nombre: "Nuevo nombre para supermercado", longitud: faker.address.longitude(), latitud: "0"
       }
       expect(() => service.update("0", supermercado)).rejects.toHaveProperty("message", "El supermercado con el id proporcionado no ha sido encontrado.")
     });
@@ -108,7 +108,7 @@ describe('SupermercadoService', () => {
       expect(deletedSupermercado).toBeNull();
     });
   
-    it('delete deberia mostrar excepcion para un Supermercado no valida', async () => {
+    it('delete deberia mostrar excepcion para un Supermercado no valido', async () => {
       const supermercado: SupermercadoEntity = supermercadosList[0];
       await service.delete(supermercado.id);
       await expect(() => service.delete("0")).rejects.toHaveProperty("message", "El supermercado con el id proporcionado no ha sido encontrado.")
