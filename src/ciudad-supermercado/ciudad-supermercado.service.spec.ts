@@ -12,7 +12,6 @@ describe('CiudadSupermercadoService', () => {
   let supermercadoRepository: Repository<SupermercadoEntity>;
   let ciudadRepository: Repository<CiudadEntity>;
   let ciudad: CiudadEntity;
-  //let supermercado: SupermercadoEntity;
   let supermercadosList: SupermercadoEntity[];
 
   beforeEach(async () => {
