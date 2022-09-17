@@ -9,10 +9,15 @@ export class CiudadEntity {
 
   @Column()
   nombre: string;
+  
   @Column()
   pais: string;
+  
   @Column()
   numHab: number;
-  @OneToMany(() => SupermercadoEntity, (supermercados) => supermercados.id)
+  
+  @OneToMany(() => SupermercadoEntity, (supermercados) => supermercados.ciudades)
   supermercados: SupermercadoEntity[];
 }
+
+
