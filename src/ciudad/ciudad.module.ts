@@ -1,4 +1,11 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { CiudadEntity } from './ciudad.entity';
+import { CiudadService } from './ciudad.service';
 
-@Module({})
+@Module({
+  providers: [CiudadService],
+  imports: [TypeOrmModule.forFeature([CiudadEntity])],
+})
 export class CiudadModule {}

@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { CiudadEntity } from '../ciudad/ciudad.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class SupermercadoEntity {
@@ -15,6 +15,6 @@ export class SupermercadoEntity {
   latitud: string;
   @Column()
   pagWeb: string;
-  @OneToMany(() => CiudadEntity, (ciudad) => ciudad.id)
+  @ManyToOne(() => CiudadEntity, (ciudades) => ciudades.nombre)
   ciudades: CiudadEntity[];
 }

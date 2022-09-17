@@ -8,7 +8,6 @@ import { CiudadSupermercadoModule } from './ciudad-supermercado/ciudad-supermerc
 import { CiudadEntity } from './ciudad/ciudad.entity';
 import { SupermercadoEntity } from './supermercado/supermercado.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { NestApplication } from '@nestjs/core';
 
 @Module({
   imports: [
