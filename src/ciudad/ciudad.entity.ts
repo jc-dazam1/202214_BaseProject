@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { SupermercadoEntity } from '../supermercado/supermercado.entity';
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class CiudadEntity {
@@ -16,7 +16,8 @@ export class CiudadEntity {
   @Column()
   numHab: number;
   
-  @OneToMany(() => SupermercadoEntity, (supermercados) => supermercados.ciudades)
+  @ManyToMany(() => SupermercadoEntity, (supermercados) => supermercados.ciudades)
+  @JoinTable()
   supermercados: SupermercadoEntity[];
 }
 
