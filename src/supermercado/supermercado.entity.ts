@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { CiudadEntity } from '../ciudad/ciudad.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class SupermercadoEntity {
@@ -15,6 +15,7 @@ export class SupermercadoEntity {
   latitud: string;
   @Column()
   pagWeb: string;
-  @ManyToOne(() => CiudadEntity, (ciudades) => ciudades.nombre)
+  @ManyToMany(() => CiudadEntity, (ciudades) => ciudades.nombre)
+  @JoinTable()
   ciudades: CiudadEntity[];
 }

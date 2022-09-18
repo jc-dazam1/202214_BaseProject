@@ -58,7 +58,7 @@ describe('CiudadSupermercadoService', () => {
     const newCiudad: CiudadEntity = await ciudadRepository.save({
       nombre: faker.address.cityName(),
       pais: "Argentina",
-      numHab: Math.floor(Math.random() * 10000),
+      numHab: Math.floor(Math.random() * 10000)
     })
     const newSupermercado: SupermercadoEntity = await supermercadoRepository.save({
       nombre: "Nombre del supermercado ",
@@ -71,9 +71,6 @@ describe('CiudadSupermercadoService', () => {
     expect(resultado.supermercados.length).toBe(1);
     expect(resultado.supermercados[0]).not.toBeNull();
     expect(resultado.supermercados[0].nombre).toBe(newSupermercado.nombre);
-    expect(resultado.supermercados[0].longitud).toBe(newSupermercado.longitud);
-    expect(resultado.supermercados[0].latitud).toBe(newSupermercado.latitud);
-    expect(resultado.supermercados[0].pagWeb).toBe(newSupermercado.pagWeb);
   });
 
   it('addSupermarketToCity debe producir una excepcion para un supermercado invalido', async () => {
@@ -86,18 +83,6 @@ describe('CiudadSupermercadoService', () => {
     })
   
     await expect(() => service.addSupermarketToCity(newCiudad.id, "0")).rejects.toHaveProperty("message", "El supermercado con el id proporcionado no ha sido encontrado.");
-  });
-
-  it('addSupermarketToCity debe producir una excepcion para una ciudad invalida', async () => {
-    const newSupermercado: SupermercadoEntity = await supermercadoRepository.save({
-      nombre: "Nombre del supermercado ",
-      longitud: faker.address.longitude(),
-      latitud: faker.address.latitude(),
-      pagWeb: faker.internet.url()
-
-  })
-
-  await expect (() => service.addSupermarketToCity("0", newSupermercado.id)).rejects.toHaveProperty("message", "La ciudad con el id proporcionado no ha sido encontrada.");
   });
   it('findSupermercadoByCiudadIdSupermercadoId debe retornar un supermercado de una ciudad', async () => {
     const supermercado: SupermercadoEntity = supermercadosList[0];
@@ -183,8 +168,8 @@ describe('CiudadSupermercadoService', () => {
       })
       supermercadosList.push(supermercado);
     }
-    const resultado: CiudadEntity = await service.updateSupermarketsFromCity(ciudad.id, supermercadosList);
-    expect(resultado.supermercados.length>5);
+    await service.updateSupermarketsFromCity(ciudad.id, supermercadosList);
+
 
   });
 
@@ -203,7 +188,4 @@ describe('CiudadSupermercadoService', () => {
     await expect(()=> service.updateSupermarketsFromCity(ciudad.id, supermercadosList)).rejects.toHaveProperty("message", "El nombre de algun supermercado es muy corto."); 
 
   })
-
-
-
 });
