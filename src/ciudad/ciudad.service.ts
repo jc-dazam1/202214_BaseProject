@@ -39,7 +39,7 @@ export class CiudadService {
         
     }
 
-    async create(ciudad: CiudadEntity): Promise<CiudadEntity> {
+    async create2(ciudad: CiudadEntity): Promise<CiudadEntity> {
         const paisesList :string[] = ["Argentina","Ecuador", "Paraguay"]
         let bandera =false;
         paisesList.forEach(element => {
