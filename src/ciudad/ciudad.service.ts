@@ -39,6 +39,21 @@ export class CiudadService {
         
     }
 
+    async create(ciudad: CiudadEntity): Promise<CiudadEntity> {
+        const paisesList :string[] = ["Argentina","Ecuador", "Paraguay"]
+        let bandera =false;
+        paisesList.forEach(element => {
+            if(ciudad.pais == element )
+                bandera =true;
+        });
+        if (!bandera)
+            throw new BusinessLogicException("La ciudad tiene un pais invalido.", BusinessError.NOT_FOUND);
+        
+        return this.ciudadRepository.save(ciudad);
+
+        
+    }
+
     async update(id: string, ciudad: CiudadEntity): Promise<CiudadEntity> {
         const persistedCiudad: CiudadEntity = await this.ciudadRepository.findOne({where:{id}});
         if (!persistedCiudad)
