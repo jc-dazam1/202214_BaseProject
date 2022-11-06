@@ -172,20 +172,4 @@ describe('CiudadSupermercadoService', () => {
 
 
   });
-
-  it('updateSupermercadosFromCiudad debe arrojar una excepcion para algun(os) supermercados invalidos', async()=>{
-
-    for(let i =0; i< 5; i++) {
-
-      const supermercado: SupermercadoEntity = await supermercadoRepository.save({
-        nombre: "N " + i,
-        longitud: faker.address.longitude(),
-        latitud: faker.address.latitude(),
-        pagWeb: faker.internet.url()
-      })
-      supermercadosList.push(supermercado);
-    }
-    await expect(()=> service.updateSupermarketsFromCity(ciudad.id, supermercadosList)).rejects.toHaveProperty("message", "El nombre de algun supermercado es muy corto."); 
-
-  })
 });
